@@ -1,0 +1,19 @@
+﻿@model AddCollageViewModel
+
+<header>Add Collage</header>
+<form class="form-control" asp-action="AddCollage" method="post">
+    <div>
+        <label asp-for="NameArabic" class="col-form-label"></label>
+        <input asp-for="NameArabic" type="text" />
+
+        <label asp-for="DescriptionArabic" class="col-form-label"></label>
+        <input asp-for="DescriptionArabic" />
+    </div>
+    <div>
+        <label asp-for="NameEnglish" class="col-form-label"></label>
+        <input asp-for="NameEnglish" />
+        <label asp-for="DescriptionEnglish" class="col-form-label"></label>
+        <input asp-for="DescriptionArabic" />
+    </div>
+    <button type="submit">Submit</button>
+</form>
