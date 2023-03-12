@@ -10,7 +10,7 @@ using University_CRM.Domain.Entities;
 
 namespace University_CRM.Application.Features.Programs.Commands;
 
-public class AddProgramCommandHandler : IRequestHandler<AddProgramCommand>
+public class AddProgramCommandHandler : IRequestHandler<AddProgramCommand,int>
 {
     private readonly IRepositoryManager repositoryManager;
 
@@ -18,7 +18,7 @@ public class AddProgramCommandHandler : IRequestHandler<AddProgramCommand>
     {
         this.repositoryManager = repositoryManager;
     }
-    public async Task<Unit> Handle(AddProgramCommand request, CancellationToken cancellationToken)
+    public async Task<int> Handle(AddProgramCommand request, CancellationToken cancellationToken)
     {
         if (!(await repositoryManager.DepartmentRepository.IsExistsAsync(dep => dep.DepartmentId == request.DeparetmentId, cancellationToken)))
             throw new NotFoundException("Not Found");
@@ -28,9 +28,9 @@ public class AddProgramCommandHandler : IRequestHandler<AddProgramCommand>
 
         await repositoryManager.ProgramRepository.AddAsync(program);
 
-        var programId = await repositoryManager.SaveAsync(cancellationToken);
+        await repositoryManager.SaveAsync(cancellationToken);
 
-        return Unit.Value;
+        return program.ProgramId;
 
     }
 }

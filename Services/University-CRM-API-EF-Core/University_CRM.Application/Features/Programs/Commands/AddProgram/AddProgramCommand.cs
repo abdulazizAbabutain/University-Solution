@@ -3,7 +3,7 @@ using University_CRM.Domain.Enums;
 
 namespace University_CRM.Application.Features.Programs.Commands;
 
-public class AddProgramCommand : IRequest
+public class AddProgramCommand : IRequest<int>
 {
     public int DeparetmentId { get; set; }
     public string NameArabic { get; set; }
