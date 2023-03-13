@@ -12,7 +12,8 @@ namespace University_CRM.Infrastructure
         {
             services.AddDbContext<ApplicationContext>(option =>
             {
-                option.UseSqlServer("Server=.;Database=University_CRM;Trusted_Connection=True");
+                //option.UseSqlServer("Server=.;Database=University_CRM;Trusted_Connection=True");
+                option.UseSqlite("Data Source=University_CRM.db;");
                 option.LogTo(Console.WriteLine);
             });
             services.AddScoped<ICollageRepository, CollageRepository>();
