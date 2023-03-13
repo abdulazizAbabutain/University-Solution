@@ -1,6 +1,8 @@
-﻿namespace University_CRM.Domain.Entities
+﻿using University_CRM.Domain.Common;
+
+namespace University_CRM.Domain.Entities
 {
-    public class ProgramCourse
+    public class ProgramCourse : AuditEntity
     {
         public int ProgreamId { get; set; }
         public Program Program { get; set; }
