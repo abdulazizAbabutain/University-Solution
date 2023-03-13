@@ -362,7 +362,5 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
-# SQLite
-*.dbo
-*.dbo-wal
-*.dbo-shm
+# Ignore the default SQLite database.
+/db/*.sqlite3
