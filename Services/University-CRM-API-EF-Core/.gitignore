@@ -363,4 +363,8 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # Ignore the default SQLite database.
+
 /db/*.sqlite3
+*.db-wal
+*.db-shm
+*.db
