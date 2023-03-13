@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using University_CRM.Domain.Enums;
 
 namespace University_CRM.Application.Features.Programs.Commands;
 
@@ -10,5 +9,5 @@ public class AddProgramCommand : IRequest<int>
     public string NameEnglish { get; set; }
     public string? DescriptionArabic { get; set; }
     public string? DescriptionEnglish { get; set; }
-    public ProgramTypeEnum ProgramTypeId { get; set; }
+    public int ProgramTypeId { get; set; }
 }

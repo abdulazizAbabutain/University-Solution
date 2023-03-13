@@ -1,5 +1,4 @@
 ﻿using University_CRM.Domain.Common;
-using University_CRM.Domain.Enums;
 
 namespace University_CRM.Domain.Entities
 {
@@ -13,7 +12,7 @@ namespace University_CRM.Domain.Entities
         public Department Department { get; private set; }
         public int DepartmentId { get; private set; }
         public ProgramType ProgramType { get; set; }
-        public ProgramTypeEnum ProgramTypeId { get; set; }
+        public int ProgramTypeId { get; set; }
         public List<ProgramCourse> Courses { get; private set; }
     }
 }
