@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using University_CRM.Domain.Entities;
 
-namespace University_CRM.Infrastructure.Configurations
+namespace University_CRM.Infrastructure.Persistence.Configurations
 {
     public class CollageConfiguration : IEntityTypeConfiguration<Collage>
     {
@@ -21,7 +21,7 @@ namespace University_CRM.Infrastructure.Configurations
             builder.HasMany(rel => rel.Departments)
                 .WithOne(rel => rel.Collage)
                 .HasForeignKey(rel => rel.CollageId);
-            
+
 
         }
     }

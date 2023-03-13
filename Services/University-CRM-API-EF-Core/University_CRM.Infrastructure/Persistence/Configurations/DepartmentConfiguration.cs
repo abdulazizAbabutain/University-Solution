@@ -2,11 +2,11 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using University_CRM.Domain.Entities;
 
-namespace University_CRM.Infrastructure.Configurations
+namespace University_CRM.Infrastructure.Persistence.Configurations
 {
-    public class ProframConfiguration : IEntityTypeConfiguration<Program>
+    public class DepartmentConfiguration : IEntityTypeConfiguration<Department>
     {
-        public void Configure(EntityTypeBuilder<Program> builder)
+        public void Configure(EntityTypeBuilder<Department> builder)
         {
             builder.Property(p => p.NameArabic).HasMaxLength(100);
             builder.Property(p => p.NameEnglish).HasMaxLength(100);
@@ -16,11 +16,8 @@ namespace University_CRM.Infrastructure.Configurations
             builder.Property(p => p.ModifiedBy).HasMaxLength(100);
             builder.Property(p => p.DeletedBy).HasMaxLength(100);
 
-            builder.HasKey(key => key.ProgramId);
+            builder.HasKey(key => key.DepartmentId);
 
-            builder.HasOne(rel => rel.ProgramType)
-                .WithMany(rel => rel.Programs)
-                .HasForeignKey(FK => FK.ProgramTypeId);
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using University_CRM.Domain.Entities;
 
-namespace University_CRM.Infrastructure.Configurations
+namespace University_CRM.Infrastructure.Persistence.Configurations
 {
     public class ProgramTypeConfiguration : IEntityTypeConfiguration<ProgramType>
     {
@@ -18,7 +18,7 @@ namespace University_CRM.Infrastructure.Configurations
             builder.Property(entity => entity.NameArabic)
                 .IsRequired()
                 .HasMaxLength(100);
-            
+
             builder.Property(entity => entity.NameEnglish)
                 .IsRequired()
                 .HasMaxLength(100);

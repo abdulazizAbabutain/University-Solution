@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using University_CRM.Domain.Entities;
 
-namespace University_CRM.Infrastructure.Configurations
+namespace University_CRM.Infrastructure.Persistence.Configurations
 {
     public class CourseConfiguration : IEntityTypeConfiguration<Course>
     {
