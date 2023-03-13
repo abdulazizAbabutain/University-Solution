@@ -11,6 +11,6 @@ namespace University_CRM.Domain.Entities
         public int CourseId { get; set; }
         public int CoursePrerequisiteId { get; set; }
         public Course Course { get; set; }
-        public Course CoursePrerequisit { get; set; }
+        public Course CoursePrerequisites { get; set; }
     }
 }

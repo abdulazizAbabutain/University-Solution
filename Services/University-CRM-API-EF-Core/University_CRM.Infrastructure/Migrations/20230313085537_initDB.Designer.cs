@@ -11,7 +11,7 @@ using University_CRM.Infrastructure.Persistence;
 namespace University_CRM.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20230313073716_initDB")]
+    [Migration("20230313085537_initDB")]
     partial class initDB
     {
         /// <inheritdoc />
@@ -138,21 +138,15 @@ namespace University_CRM.Infrastructure.Migrations
 
             modelBuilder.Entity("University_CRM.Domain.Entities.CoursePrerequisite", b =>
                 {
-                    b.Property<int>("CoursePrerequisiteId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("CourseId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CoursePrerequisitCourseId")
+                    b.Property<int>("CoursePrerequisiteId")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("CoursePrerequisiteId");
+                    b.HasKey("CourseId", "CoursePrerequisiteId");
 
-                    b.HasIndex("CourseId");
-
-                    b.HasIndex("CoursePrerequisitCourseId");
+                    b.HasIndex("CoursePrerequisiteId");
 
                     b.ToTable("CoursePrerequisite");
                 });
@@ -341,25 +335,33 @@ namespace University_CRM.Infrastructure.Migrations
                     b.HasKey("ProgramTypeId");
 
                     b.ToTable("ProgramType");
+
+                    b.HasData(
+                        new
+                        {
+                            ProgramTypeId = 1,
+                            NameArabic = "بكالـوريوس",
+                            NameEnglish = "Bachelor's"
+                        });
                 });
 
             modelBuilder.Entity("University_CRM.Domain.Entities.CoursePrerequisite", b =>
                 {
                     b.HasOne("University_CRM.Domain.Entities.Course", "Course")
-                        .WithMany("CoursePrerequisites")
+                        .WithMany("Courses")
                         .HasForeignKey("CourseId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("University_CRM.Domain.Entities.Course", "CoursePrerequisit")
-                        .WithMany()
-                        .HasForeignKey("CoursePrerequisitCourseId")
+                    b.HasOne("University_CRM.Domain.Entities.Course", "CoursePrerequisites")
+                        .WithMany("CoursePrerequisites")
+                        .HasForeignKey("CoursePrerequisiteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Course");
 
-                    b.Navigation("CoursePrerequisit");
+                    b.Navigation("CoursePrerequisites");
                 });
 
             modelBuilder.Entity("University_CRM.Domain.Entities.Department", b =>
@@ -419,6 +421,8 @@ namespace University_CRM.Infrastructure.Migrations
             modelBuilder.Entity("University_CRM.Domain.Entities.Course", b =>
                 {
                     b.Navigation("CoursePrerequisites");
+
+                    b.Navigation("Courses");
 
                     b.Navigation("Programs");
                 });

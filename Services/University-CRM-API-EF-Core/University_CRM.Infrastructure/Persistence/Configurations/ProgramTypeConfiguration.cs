@@ -22,6 +22,13 @@ namespace University_CRM.Infrastructure.Persistence.Configurations
             builder.Property(entity => entity.NameEnglish)
                 .IsRequired()
                 .HasMaxLength(100);
+            builder.HasData(
+                new ProgramType
+            {
+                    ProgramTypeId = 1,
+                    NameArabic = "بكالـوريوس", 
+                    NameEnglish = "Bachelor\'s",
+            });
         }
     }
 }

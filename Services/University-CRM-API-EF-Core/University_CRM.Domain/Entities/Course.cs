@@ -10,9 +10,10 @@ namespace University_CRM.Domain.Entities
         public string? DescriptionArabic { get; set; }
         public string? DescriptionEnglish { get; set; }
         public string CourseCode { get; set; }
-        public int CreditHours { get; set; }
-        public bool HasLap { get; set; }
+        public int CreditHours { get; set; }    
+        public bool HasLap { get; set; }       
         public ICollection<ProgramCourse> Programs { get; set; }
         public ICollection<CoursePrerequisite> CoursePrerequisites { get; set; }
+        public ICollection<CoursePrerequisite> Courses{ get; set; }
     }
 }

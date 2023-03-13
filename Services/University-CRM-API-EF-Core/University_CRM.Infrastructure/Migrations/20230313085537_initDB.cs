@@ -108,14 +108,12 @@ namespace University_CRM.Infrastructure.Migrations
                 name: "CoursePrerequisite",
                 columns: table => new
                 {
-                    CoursePrerequisiteId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
                     CourseId = table.Column<int>(type: "INTEGER", nullable: false),
-                    CoursePrerequisitCourseId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CoursePrerequisiteId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CoursePrerequisite", x => x.CoursePrerequisiteId);
+                    table.PrimaryKey("PK_CoursePrerequisite", x => new { x.CourseId, x.CoursePrerequisiteId });
                     table.ForeignKey(
                         name: "FK_CoursePrerequisite_Course_CourseId",
                         column: x => x.CourseId,
@@ -123,8 +121,8 @@ namespace University_CRM.Infrastructure.Migrations
                         principalColumn: "CourseId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_CoursePrerequisite_Course_CoursePrerequisitCourseId",
-                        column: x => x.CoursePrerequisitCourseId,
+                        name: "FK_CoursePrerequisite_Course_CoursePrerequisiteId",
+                        column: x => x.CoursePrerequisiteId,
                         principalTable: "Course",
                         principalColumn: "CourseId",
                         onDelete: ReferentialAction.Cascade);
@@ -200,15 +198,15 @@ namespace University_CRM.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_CoursePrerequisite_CourseId",
-                table: "CoursePrerequisite",
-                column: "CourseId");
+            migrationBuilder.InsertData(
+                table: "ProgramType",
+                columns: new[] { "ProgramTypeId", "NameArabic", "NameEnglish" },
+                values: new object[] { 1, "بكالـوريوس", "Bachelor's" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CoursePrerequisite_CoursePrerequisitCourseId",
+                name: "IX_CoursePrerequisite_CoursePrerequisiteId",
                 table: "CoursePrerequisite",
-                column: "CoursePrerequisitCourseId");
+                column: "CoursePrerequisiteId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Department_CollageId",

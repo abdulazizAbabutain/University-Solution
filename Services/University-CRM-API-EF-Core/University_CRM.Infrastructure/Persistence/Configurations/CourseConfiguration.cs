@@ -21,9 +21,7 @@ namespace University_CRM.Infrastructure.Persistence.Configurations
             builder.Property(p => p.ModifiedBy).HasMaxLength(100);
             builder.Property(p => p.DeletedBy).HasMaxLength(100);
 
-            builder.HasMany(rel => rel.CoursePrerequisites)
-                .WithOne(p => p.Course)
-                .HasForeignKey(key => key.CourseId);
+   
         }
     }
 }

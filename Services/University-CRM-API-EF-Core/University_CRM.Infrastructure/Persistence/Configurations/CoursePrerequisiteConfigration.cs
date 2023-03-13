@@ -13,7 +13,15 @@ namespace University_CRM.Infrastructure.Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<CoursePrerequisite> builder)
         {
-            //builder.HasKey(key => new {key.CourseId, key.CoursePrerequisiteId});
+            builder.HasKey(key => new { key.CourseId, key.CoursePrerequisiteId });
+
+            builder.HasOne(rel => rel.Course)
+                .WithMany(rel => rel.Courses)
+                .HasForeignKey(FK => FK.CourseId);
+
+            builder.HasOne(rel => rel.CoursePrerequisites)
+                .WithMany(rel => rel.CoursePrerequisites)
+                .HasForeignKey(FK => FK.CoursePrerequisiteId);
         }
     }
 }
