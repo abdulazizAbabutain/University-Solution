@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using University_CRM.Application.Common.Models;
 using University_CRM.Application.Features.Departments.Commands;
 using University_CRM.Application.Features.Departments.Queries.GetAllDepartments;
 using University_CRM.Application.Features.Departments.Queries.GetDepartment;
@@ -29,14 +30,20 @@ namespace University_CRM.API.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetAllDepartment([FromQuery] GetAllDepartmentsQuery query)
-            =>  Ok(await Mediator.Send(query));
+        {
+            var departments = await Mediator.Send(query);
+            if(departments.Any())
+                return Ok(departments);
+            return NoContent();
+        }
+            
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetDepartment([FromRoute]int? id)
         {
-            if (id is null)
+            if (id == null)
                 return BadRequest();
-            return Ok(await Mediator.Send(new GetDepartmentQuery { Id = id.Value} ));
+            return Ok(await Mediator.Send(new GetDepartmentQuery { Id = id.Value }));
         }
          
 

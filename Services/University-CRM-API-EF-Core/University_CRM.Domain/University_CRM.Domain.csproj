@@ -7,9 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Exceptioon\**" />
+    <EmbeddedResource Remove="Exceptioon\**" />
+    <None Remove="Exceptioon\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Common\" />
     <Folder Include="Enums\" />
-    <Folder Include="Exceptioon\" />
   </ItemGroup>
 
 </Project>
